@@ -5,6 +5,17 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Example assertion
-      ansible.builtin.assert:
-        that: true
+
+    - name: VERIFY CODIUM INSTALLATION
+      ansible.builtin.command:
+        cmd: /usr/bin/codium --version
+      register: _verify_codium
+      failed_when: _verify_codium.rc != 0
+      changed_when: false
+
+    - name: LIST INSTALLED EXTENSIONS
+      command:
+        cmd: "codium --list-extensions"
+      register: _codium_extensions
+      failed_when: "'wwm.better-align' not in  _codium_extensions.stdout"
+      changed_when: false

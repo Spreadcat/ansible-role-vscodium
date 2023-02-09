@@ -1,30 +1,59 @@
-# spreadcat.rolename
+# spreadcat.vscodium
 
-Some general description of this role.
+Ansible role for inststalling [VScodium](https://vscodium.com/) and Extensions.
 
 ## Requirements
 
-The general requirements, like access or other stuff.
+* None
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+See `./defaults/main.yml` for a detailed explanation on how to use the variables.
 
 ```yaml
-var1: value1
+vscodium_extensions: []
 ```
 
-Some variable description.
+* List of extensions that will be installed.
 
 ## Other variables
 
-Second class variables, not immediately needed.
-
 ```yaml
-var1: value1
+vscodium_apt_gpg_key: ""
 ```
 
-Some variable description.
+* URL to the GPG key for the APT repository.
+
+```yaml
+vscodium_rpm_gpg_key: ""
+```
+
+* URL to the GPG key for the RPM repository.
+
+```yaml
+vscodium_package_name: ""
+```
+
+* String with the name of the package to install.
+
+```yaml
+vscodium_package_state: ""
+```
+
+* String with the package state.
+
+```yaml
+vscodium_user_home: ""
+```
+
+* Homedirectory of the user who should use VSCodium.
+
+```yaml
+vscodium_user_name: ""
+
+* Username for which to set permissions and extensions.
+
+```
 
 ## Dependencies
 
@@ -37,10 +66,12 @@ Including an example of how to use your role (for instance, with variables passe
 ```yaml
 ---
 - hosts: all
-  vars:
-    var1: value1
+  gather_facts: true
   roles:
-     - role: spreadcat.rolename
+     - role: spreadcat.vscodium
+       vars:
+         vscodium_extensions:
+           - vscodevim.vim
 ```
 
 ## License

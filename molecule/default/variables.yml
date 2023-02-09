@@ -1,2 +1,4 @@
 ---
 # Variables for this scenario
+vscodium_extensions:
+  - wwm.better-align

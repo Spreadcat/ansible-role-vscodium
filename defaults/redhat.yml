@@ -1,0 +1,4 @@
+---
+# GPG key
+vscodium_rpm_gpg_key: >-
+  https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg

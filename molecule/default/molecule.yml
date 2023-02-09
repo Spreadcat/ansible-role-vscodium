@@ -5,32 +5,8 @@ driver:
   name: podman
 platforms:
 
-  - name: fedora34
-    image: docker.io/geerlingguy/docker-fedora34-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    capabilities:
-      - SYS_ADMIN
-    command: "/lib/systemd/systemd"
-    pre_build_image: true
-
-  - name: fedora35
-    image: docker.io/geerlingguy/docker-fedora35-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    capabilities:
-      - SYS_ADMIN
-    command: "/lib/systemd/systemd"
-    pre_build_image: true
-
   - name: fedora36
-    image: docker.io/geerlingguy/docker-fedora36-ansible
+    image: localhost/fedora36-ansible-nonroot
     tmpfs:
       - /run
       - /tmp
@@ -42,7 +18,7 @@ platforms:
     pre_build_image: true
 
   - name: fedora37
-    image: localhost/fedora37-ansible
+    image: localhost/fedora37-ansible-nonroot
     tmpfs:
       - /run
       - /tmp
@@ -54,7 +30,7 @@ platforms:
     pre_build_image: true
 
   - name: ubuntu2004
-    image: geerlingguy/docker-ubuntu2004-ansible
+    image: localhost/ubuntu2004-ansible-nonroot
     tmpfs:
       - /run
       - /tmp
@@ -66,7 +42,7 @@ platforms:
     pre_build_image: true
 
   - name: ubuntu2204
-    image: geerlingguy/docker-ubuntu2004-ansible
+    image: localhost/ubuntu2204-ansible-nonroot
     tmpfs:
       - /run
       - /tmp
@@ -80,6 +56,12 @@ provisioner:
   name: ansible
   inventory:
     host_vars:
+      ubuntu2004:
+        ansible_user: ansible
+      ubuntu2204:
+        ansible_user: ansible
+      fedora36:
+        ansible_user: ansible
       fedora37:
         ansible_user: ansible
   config_options:
