@@ -1,0 +1,20 @@
+---
+# Install tasks for this roles
+- name: LOAD VARIABLES
+  ansible.builtin.include_vars: "../defaults/{{ ansible_os_family|lower }}.yml"
+
+- name: "INSTALL {{ ansible_os_family|upper }} REQUIREMENTS"
+  ansible.builtin.include_tasks: "install_{{ ansible_os_family|lower }}.yml"
+
+- name: INSTALL PACKAGES
+  become: true
+  ansible.builtin.package:
+    name: "{{ vscodium_package_name }}"
+    state: "{{ vscodium_package_state }}"
+
+- name: INSTALL EXTENSIONS
+  ansible.builtin.include_tasks: install_extension.yml
+  when: vscodium_extensions|length > 0
+  loop: "{{ vscodium_extensions }}"
+  loop_control:
+    loop_var: vscodium_extension_name

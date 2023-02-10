@@ -1,0 +1,12 @@
+---
+- name: LIST INSTALLED EXTENSIONS
+  command:
+    cmd: 'codium --list-extensions'
+  register: _list_extensions
+  changed_when: false
+  run_once: true
+
+- name: "INSTALL EXTENSION: {{ vscodium_extension_name }}"
+  ansible.builtin.command:
+    cmd: "codium --install-extension {{ vscodium_extension_name }}"
+  when: vscodium_extension_name not in _list_extensions.stdout_lines | lower

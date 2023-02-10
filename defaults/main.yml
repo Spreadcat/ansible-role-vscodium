@@ -1,0 +1,29 @@
+---
+# defaults file for vscodium
+#
+# List of extensions to install for Codium
+# Example:
+#   codium_extensions:
+#     - ext1
+#     - ext2
+vscodium_extensions: []
+
+# Codium package name
+# Example:
+#   codium_package_name
+vscodium_package_name: codium
+
+# Codium package state
+# Example:
+#   codium_package_state: present
+vscodium_package_state: present
+
+# Default home dir
+# Example:
+#   codium_user_home: /home/user
+vscodium_user_home: "{{ lookup('env', 'HOME') }}"
+
+# Default user for codium
+# Example:
+#   codium_user_name: Bob
+vscodium_user_name: "{{ lookup('env', 'USER') }}"

@@ -1,0 +1,14 @@
+---
+- name: ONE WAY TO AVOID APT_KEY ONCE IT IS REMOVED FROM YOUR DISTRO
+  block:
+    - name: ADD APT-KEY
+      become: true
+      ansible.builtin.get_url:
+        url: "{{ vscodium_apt_gpg_key }}"
+        dest: /etc/apt/trusted.gpg.d/vscodium.asc
+
+    - name: ADD REPO
+      become: true
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/vscodium.asc] https://download.vscodium.com/debs vscodium main"  # yamllint disable-line rule:line-length
+        state: present

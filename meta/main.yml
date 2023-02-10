@@ -1,0 +1,20 @@
+---
+dependencies: []
+galaxy_info:
+  author: Daniel Buøy-Vehn
+  company: ''
+  description: No description.
+  galaxy_tags: []
+  license: BSD
+  min_ansible_version: '2.4'
+  namespace: spreadcat
+  platforms:
+    - name: Fedora
+      versions:
+        - '36'
+        - '37'
+    - name: Ubuntu
+      versions:
+        - Focal
+        - Jammy
+  role_name: vscodium

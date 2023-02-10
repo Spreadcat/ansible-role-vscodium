@@ -1,0 +1,9 @@
+---
+# tasks files
+- name: INCLUDE INSTALL TASKS
+  include_tasks: install.yml
+- name: INCLUDE CONFIG TASKS
+  include_tasks: config.yml
+- name: INCLUDE SERVICE TASKS
+  include_tasks: service.yml
+...

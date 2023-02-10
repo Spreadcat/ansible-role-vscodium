@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: LOAD VARIABLES
+      ansible.builtin.include_vars: ./variables.yml
+    - name: "Include spreadcat.vscodium"
+      ansible.builtin.include_role:
+        name: "spreadcat.vscodium"
