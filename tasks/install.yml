@@ -1,18 +1,18 @@
 ---
 # Install tasks for this roles
-- name: LOAD VARIABLES
+- name: Install | Load variables
   ansible.builtin.include_vars: "../defaults/{{ ansible_os_family|lower }}.yml"
 
-- name: "INSTALL {{ ansible_os_family|upper }} REQUIREMENTS"
+- name: "Install | Install {{ ansible_os_family|upper }} requirements"
   ansible.builtin.include_tasks: "install_{{ ansible_os_family|lower }}.yml"
 
-- name: INSTALL PACKAGES
+- name: Install | Manage packages
   become: true
   ansible.builtin.package:
     name: "{{ vscodium_package_name }}"
     state: "{{ vscodium_package_state }}"
 
-- name: INSTALL EXTENSIONS
+- name: Install | Install extensions
   ansible.builtin.include_tasks: install_extension.yml
   when: vscodium_extensions|length > 0
   loop: "{{ vscodium_extensions }}"

@@ -1,11 +1,11 @@
 ---
-- name: INSTALL RPM KEYS
+- name: Install_redhat | Install RPM keys
   become: true
   ansible.builtin.rpm_key:
     state: present
     key: "{{ vscodium_rpm_gpg_key }}"
 
-- name: SETUP VSCODIUM REPOSITORY
+- name: Install_redhat | Setup vscodium repository
   become: true
   ansible.builtin.yum_repository:
     state: present
