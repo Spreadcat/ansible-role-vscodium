@@ -4,7 +4,7 @@ Ansible role for inststalling [VScodium](https://vscodium.com/) and Extensions.
 
 ## Requirements
 
-* None
+* The role requires `gathered_facts: true` to be set.
 
 ## Role Variables
 
